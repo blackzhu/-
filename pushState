@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="abc">
+        <button id="a" class="btn1">A</button>
+        <button id="b" class="btn1">B</button>
+        <button id="c" class="btn1">C</button>
+    </div>
+    <div id="def">
+        <button id="d" class="btn2">D</button>
+        <button id="e" class="btn2">E</button>
+        <button id="f" class="btn2">F</button>
+    </div>
+    <div id="cont1">A</div>
+    <div id="cont2">D</div>
+    <script>
+        var data = {
+            cont1: 'A',
+            cont2: 'D'
+        };
+        var abc = document.getElementById('abc');
+        var def = document.getElementById('def');
+        var btn2 = document.getElementsByClassName('btn2');
+        var cont1 = document.getElementById('cont1');
+        var cont2 = document.getElementById('cont2');
+
+        abc.addEventListener('click', show1, false);
+        def.addEventListener('click', show2, false);
+
+        function show1(e) {
+            cont1.innerHTML = e.target.innerHTML;
+            data.cont1 = e.target.innerHTML;
+            setdata();
+        }
+        function show2(e) {
+            cont2.innerHTML = e.target.innerHTML;
+            data.cont2 = e.target.innerHTML;
+            setdata();
+        };
+
+        setdata = () => history.pushState(data, null, getdata(data));
+        function getdata(obj) {
+            var str = "?";
+            for (var key in obj) {
+                if (obj.hasOwnProperty(key)) {
+                    str += key + '=' + obj[key] + '&';
+                }
+            }
+            str = str.substring(0, str.length - 1);
+            return encodeURI(str);
+        };
+        window.onpopstate = (e) => {
+            var currentState = history.state;
+            if (currentState) {
+                cont1.innerHTML=currentState.cont1;
+                cont2.innerHTML=currentState.cont2;
+            }
+        }
+        setdata();
+    </script>
+</body>
+
+</html>
