@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="abc">
+        <button id="a">A</button>
+        <button id="b">B</button>
+        <button id="c">C</button>
+        <div id="cont1"></div>
+    </div>
+    <div id="def">
+        <button id="d">D</button>
+        <button id="e">E</button>
+        <button id="f">F</button>
+        <div id="cont2"></div>
+    </div>
+    <script>
+        var adc=document.getElementById('abc');
+        var def=document.getElementById('def');
+        var cont1 = document.getElementById('cont1');
+        var cont2 = document.getElementById('cont2');
+        function getvalue() {
+            var url_hash = window.location.hash;
+            return url_hash;
+        }
+        function show() {
+            var url_hash = getvalue();
+            url_hash = url_hash.slice(1);
+            cont1.innerHTML = url_hash.charAt(url_hash.length-1);
+        }
+        function changehash(e) {
+            window.location.hash += e.target.innerHTML;
+        }
+        abc.addEventListener('click', changehash, false);
+        def.addEventListener('click', changehash, false);
+        window.onhashchange = show;
+        show();
+    </script>
+</body>
+
+</html>
