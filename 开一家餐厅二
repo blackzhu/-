@@ -1,4 +1,16 @@
-<script>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
         //餐厅类
         function Restaurant(obj) {
             this.cash = obj.cash;//number
@@ -89,7 +101,7 @@
                 waiter.orderStart();
                 customerOrder = [];
                 customerOrder.push(order(menu));
-                console.log('顾客'+ this.name +'点了' + customerOrder[0].name);
+                console.log('顾客' + this.name + '点了' + customerOrder[0].name);
                 waiter.work(customerOrder);
             },
             eat: function () {
@@ -97,7 +109,7 @@
                 console.log("顾客 - eat");
                 setTimeout(function () {
                     console.log("顾客 - 吃完了");
-                    console.log("还有0"+parseInt(queue.length-1)+"的人在排队");
+                    console.log("还有0" + parseInt(queue.length - 1) + "的人在排队");
                     _this.leave();
                 }, 500);
             },
@@ -118,6 +130,17 @@
             { name: "拍黄瓜", cost: 10, price: 15 },
             { name: "孜然牛肉", cost: 30, price: 40 }];
         var customerOrder = [];   //顾客点菜
+
+        //创建菜单
+        // function createMenu() {
+        //     var menuList = [{ name: "可乐排骨", cost: 100, price: 130 }, { name: "辣子鸡", cost: 50, price: 80 }, { name: "虾", cost: 60, price: 80 }, { name: "拍黄瓜", cost: 10, price: 15 }, { name: "孜然牛肉", cost: 30, price: 40 }];
+        //     for (var i = 0; i < menuList.length; i++) {
+        //         var food = new Food(menuList[i].name, menuList[i].cost, menuList[i].price);
+        //         menu.push(food);
+        //     }
+        //     console.log("菜单", menu)
+        // }
+        // createMenu();
 
         //菜品
         function Meal(name, cost, price) {
@@ -174,3 +197,6 @@
 
         queuing();
     </script>
+</body>
+
+</html>
