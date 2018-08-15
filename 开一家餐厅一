@@ -1,0 +1,77 @@
+<script>
+        function Restaurant(cash, seats, staff) {//餐厅类
+            this.cash = cash;//number
+            this.seats = seats;//number
+            this.staff = staff;//array
+        };
+        Restaurant.prototype = {
+            constructor: Restaurant,
+            recruitStaff: function (s) {//雇员
+                if (!(s instanceof Staff)) {
+                    return;
+                }
+                this.staff.push(s);
+            },
+            fireStaff: function (id) {//解雇
+                if (typeof id !== 'number') {
+                    return;
+                }
+                this.staff = this.staff.filter(function (item, index, array) {
+                    return item.id !== id;
+                });
+            }
+        };
+
+        function Staff(id, name, salary) {//职员类
+            this.id = id;
+            this.name = name;
+            this.salary = salary;
+        };
+
+        function Waiter(id, name, salary) {//服务员类 继承自职员类
+            Staff.call(this, id, name, salary);
+        }
+        Waiter.prototype = new Staff();
+        Waiter.prototype.constructor = Waiter;
+        Waiter.prototype.serve = function (customerId) {
+        };
+
+        function Chef(id, name, salary) {//出事类 继承自职员类
+            Staff.call(this, id, name, salary);
+        }
+        Chef.prototype = new Staff();
+        Chef.prototype.constructor = Chef;
+        Chef.prototype.cook = function (customerId) {
+        };
+
+        function Customer(id, seat, mealList) {//顾客类
+            this.id = id;
+            this.seat = seat;
+            this.mealList = mealList;
+        }
+        Customer.prototype = {
+            order: function () {
+
+            },
+            eat: function () {
+
+            }
+        }
+
+        function Meal(name, cost, price) {//菜品
+            this.name = name;
+            this.cost = cost;
+            this.price = price;
+        }
+
+
+
+        var ifeRestaurant = new Restaurant(1000000,20,[]);
+        var newCook = new Chef(1,"Tony", 10000);
+
+        ifeRestaurant.recruitStaff(newCook);
+        console.log(ifeRestaurant.staff);
+
+        ifeRestaurant.fireStaff(newCook.id);
+        console.log(ifeRestaurant.staff);
+    </script>
